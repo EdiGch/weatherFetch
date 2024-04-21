@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherController{% endblock %}
+
+{% block body %}
+
+<div class="city p-3 pb-md-4 mx-auto text-center">
+    {% if city is defined and city is not empty %}
+        <h1 class="display-4">{{ city }}</h1>
+    {% else %}
+        <h1 class="display-4">Nieznane miasto</h1>
+    {% endif %}
+
+    {% if measurement_date is defined and measurement_date is not empty %}
+        <p class="lead"><strong>Data pomiaru:</strong> {{ measurement_date }}</p>
+    {% else %}
+        <p class="lead"><strong>Data pomiaru:</strong> brak danych</p>
+    {% endif %}
+
+    {% if measurement_hour is defined and measurement_hour is not empty %}
+        <p class="lead"><strong>Godzina pomiaru:</strong> {{ measurement_hour }}</p>
+    {% else %}
+        <p class="lead"><strong>Godzina pomiaru:</strong> brak danych</p>
+    {% endif %}
+
+    {% if temperature is defined and temperature is not empty %}
+        <p class="lead"><strong>Temperatura:</strong> {{ temperature }}°C</p>
+    {% else %}
+        <p class="lead"><strong>Temperatura:</strong> brak danych</p>
+    {% endif %}
+</div>
+
+
+{% endblock %}

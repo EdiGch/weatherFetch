@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="App\Tests\Controller\WeatherControllerTest" file="/app/tests/Controller/WeatherControllerTest.php" tests="2" assertions="3" errors="0" failures="0" skipped="0" time="0.254746">
+    <testcase name="testIndex" file="/app/tests/Controller/WeatherControllerTest.php" line="10" class="App\Tests\Controller\WeatherControllerTest" classname="App.Tests.Controller.WeatherControllerTest" assertions="2" time="0.162564"/>
+    <testcase name="testIndexWithException" file="/app/tests/Controller/WeatherControllerTest.php" line="19" class="App\Tests\Controller\WeatherControllerTest" classname="App.Tests.Controller.WeatherControllerTest" assertions="1" time="0.092182"/>
+  </testsuite>
+</testsuites>

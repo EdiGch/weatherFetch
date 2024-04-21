@@ -1,0 +1,61 @@
+version: "3.8"
+
+volumes:
+  composer:
+
+networks:
+  app-network:
+
+
+services:
+  nginx:
+    restart: always
+    volumes:
+      - ./app:/app
+    depends_on:
+      - app
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.3.0
+    restart: always
+    ports:
+      - "${MYSQL_LOCAL_PORT}:3306"
+    env_file:
+      - env_variables/db.env
+      - env_variables/db.env.local
+    volumes:
+      - ./var/mysql:/var/lib/mysql
+    networks:
+      - app-network
+    healthcheck:
+      test: "mysqladmin ping -h 127.0.0.1 -u root --password=${MYSQL_ROOT_PASSWORD}"
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+
+  app:
+    env_file:
+      - env_variables/app.env
+      - env_variables/app.env.local
+      - env_variables/db.env
+      - env_variables/db.env.local
+    tty: true
+    networks:
+      - app-network
+    volumes:
+      - ./app:/app
+      - composer:/root/.composer/cache
+    depends_on:
+      mysql:
+        condition: service_healthy
+    command: >
+      bash -c "
+        symfony server:start --no-tls --port=8000"
+    ports:
+      - "8000:8000"

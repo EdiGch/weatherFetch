@@ -1,0 +1,26 @@
+city_weather_report:
+    path: /pogoda/{city}
+    controller: App\Controller\WeatherController::index
+    methods: [GET]
+
+
+api_city_weather_report:
+    path: /api/pogoda/{city}
+    controller: App\Controller\WeatherController::api_city_weather_report
+    methods: GET
+
+api_city_weather_full_report:
+    path: /api/pogoda/{city}/full
+    controller: App\Controller\WeatherController::api_city_weather_full_report
+    methods: GET
+
+
+app_register:
+    path: /api/register
+    controller: App\Controller\RegistrationController::register
+    methods: ['POST']
+
+api_login_check:
+    path: /api/login_check
+    controller: App\Controller\SecurityController::loginCheck
+    methods: ['POST']
